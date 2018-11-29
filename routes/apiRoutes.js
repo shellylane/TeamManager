@@ -68,6 +68,16 @@ module.exports = function(app) {
       res.json(dbComment);
     });
   });
+    // DELETE route for deleting posts
+    app.delete("/api/forum/:id", function(req, res) {
+      db.Post.destroy({
+        where: {
+          id: req.params.id
+        }
+      }).then(function(dbPost) {
+        res.json(dbPost);
+      });
+    });
   // create post route for comments
   // create post api route
   app.post("/api/comment", function(req, res) {
